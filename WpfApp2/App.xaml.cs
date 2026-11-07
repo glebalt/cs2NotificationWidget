@@ -105,7 +105,7 @@ namespace WpfApp2
             }
 
             WshShell shell = new WshShell();
-          IWshShortcut shortcut =   shell.CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + name);
+          IWshShortcut shortcut = (IWshShortcut)  shell.CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + name);
             shortcut.Save();
 
             return true;
