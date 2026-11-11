@@ -44,7 +44,7 @@ namespace WpfApp2.Services
             
             }
 
-
+            int sum = 0;
 
             prevState = current;
             return null;
