@@ -5,16 +5,19 @@ using System.Windows;
 using CounterStrike2GSI;
 using CounterStrike2GSI.EventMessages;
 using WpfApp2.Models;
-namespace WpfApp2
+namespace WpfApp2.Services
 {
     public class StateManager
     {
         private CounterStrike2GSI.Nodes.Phase prevState;
-       
+        private App.NotificationPosition notificationPosition = App.NotificationPosition.Topleft;
+        //ToDO
+        private int duration;
         private readonly GameStateListener gsl;
 
         public StateManager( GameStateListener gsl)
         {
+            
             this.gsl = gsl;
         }
         public INotification CheckState(CounterStrike2GSI.Nodes.Phase current, CounterStrike2GSI.Nodes.Phase  prev)
@@ -25,7 +28,7 @@ namespace WpfApp2
                
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    not =  new FreezetimeStartedNotification();
+                    not =  new FreezetimeStartedNotification(notificationPosition);
                     NotificationService.UpdateNotification(not);
 
                 });
@@ -35,7 +38,7 @@ namespace WpfApp2
                
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    not =  new RoundStartedNotification();
+                    not =  new RoundStartedNotification(notificationPosition);
                     NotificationService.UpdateNotification(not);
                 });
             
@@ -66,9 +69,14 @@ namespace WpfApp2
             CounterStrike2GSI.Nodes.Phase current = state.Round.Phase;
            INotification notification = CheckState(current,prevState);
             System.Diagnostics.Debug.WriteLine(current);
-      ;
+     
 
 
+        }
+
+        public void UpdateNotificationPosition(App.NotificationPosition pos)
+        {
+            notificationPosition = pos;
         }
     }
 }
