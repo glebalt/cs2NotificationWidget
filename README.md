@@ -23,4 +23,4 @@ A lightweight desktop notification widget for Counter-Strike 2.
 - Counter-Strike 2
 
 ### Installation
-Download the latest version from [Releases](../../releases) and run `CS2Widget.exe`.
+Download the latest version from [Releases](../../releases) and run `WpfApp2.exe`. It will create dekstop shortcut
